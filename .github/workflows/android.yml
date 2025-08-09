@@ -5,12 +5,12 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-env:
-  ANDROID_SDK_ROOT: ${{ runner.temp }}/android-sdk
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      ANDROID_SDK_ROOT: /tmp/android-sdk
 
     steps:
       - name: Checkout repo
@@ -45,7 +45,6 @@ jobs:
         run: chmod +x gradlew || true
 
       - name: Build debug APK
-        # Uses Gradle action which will install a Gradle runner if needed
         uses: gradle/gradle-build-action@v2
         with:
           arguments: assembleDebug
