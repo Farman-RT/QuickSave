@@ -25,16 +25,14 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug
+      - name: Build Debug APK
+        run: ./gradlew clean assembleDebug
 
-      # Find actual APK location
-      - name: Show APK path
-        run: find . -name "*.apk"
+      - name: List APK files
+        run: ls -R app/build/outputs/apk || true
 
-      # Upload APK artifact
-      - name: Upload APK
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-apk
-          path: app/build/outputs/apk/**/*.apk
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
