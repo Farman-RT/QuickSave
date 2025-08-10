@@ -36,5 +36,3 @@ jobs:
         with:
           name: app-apk
           path: app/build/outputs/apk/**/*.apk
-      - name: Find generated APKs
-          run: ls -R app/build/outputs/apk
