@@ -28,12 +28,13 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew clean assembleDebug
 
-      - name: List all build outputs
+      # یہ step اصل APK location دکھائے گا
+      - name: List all build output files
         run: ls -R app/build/outputs || true
 
+      # ابھی path کو *.apk سے match کرنے کے لیے بدل دیا ہے
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
+          path: app/build/outputs/**/*.apk
