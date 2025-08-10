@@ -6,8 +6,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ApiClient {
-    // TODO: Set this to your working Flask API base URL (ending with /)
-    public static final String BASE_API_URL = "https://your-flask-api-base-url/";
+    // Set this to your working Flask API base URL (ending with /)
+    // Replace with your actual backend URL later
+    public static final String BASE_API_URL = "https://jsonplaceholder.typicode.com/";
 
     private static Retrofit retrofit = null;
 
@@ -15,6 +16,7 @@ public class ApiClient {
         if (retrofit == null) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(logging)
                     .build();
